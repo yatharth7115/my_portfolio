@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatharth Gupta - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f;
+            color: #ccd6f6;
+        }
+        .glass-effect {
+            background: rgba(13, 30, 58, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .accent-color {
+            color: #64ffda;
+        }
+        .accent-bg {
+            background-color: #64ffda;
+        }
+        .section-heading {
+            display: flex;
+            align-items: center;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #e6f1ff;
+            margin-bottom: 2rem;
+            position: relative;
+            width: 100%;
+        }
+        .section-heading::after {
+            content: '';
+            display: block;
+            position: relative;
+            top: 2px;
+            width: 200px;
+            height: 1px;
+            margin-left: 20px;
+            background-color: #334b6e;
+        }
+        .tag {
+            background-color: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        /* Modal styles */
+        #ai-modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none; /* Initially hidden */
+        }
+        #ai-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            z-index: 1000;
+            display: none; /* Initially hidden */
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #64ffda;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased leading-relaxed">
+
+    <!-- Header & Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800/50 border border-slate-700 text-lg font-bold accent-color transition-colors hover:border-accent-color">
+                YG
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="hover:accent-color transition-colors">About</a>
+                <a href="#projects" class="hover:accent-color transition-colors">Projects</a>
+                <a href="#skills" class="hover:accent-color transition-colors">Skills</a>
+                <a href="#contact" class="hover:accent-color transition-colors">Contact</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-6 hover:bg-slate-700">About</a>
+            <a href="#projects" class="block py-2 px-6 hover:bg-slate-700">Projects</a>
+            <a href="#skills" class="block py-2 px-6 hover:bg-slate-700">Skills</a>
+            <a href="#contact" class="block py-2 px-6 hover:bg-slate-700">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 md:px-12 lg:px-24">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex flex-col justify-center pt-24">
+            <p class="text-lg accent-color mb-4">Hi, my name is</p>
+            <h1 class="text-4xl md:text-7xl font-bold text-slate-200">Yatharth Gupta.</h1>
+            <h2 class="text-4xl md:text-7xl font-bold text-slate-400 mt-2">I build things with data.</h2>
+            <p class="mt-6 max-w-2xl text-slate-400">
+                I'm an Electrical Engineering student at IIT Patna with a passion for Machine Learning and Deep Learning. I enjoy turning complex problems into elegant, data-driven solutions.
+            </p>
+            <div class="mt-8 flex items-center space-x-6">
+                <a href="https://github.com/yatharth7115" target="_blank" class="hover:text-white transition-transform duration-300 hover:-translate-y-1">
+                    <i data-lucide="github" class="w-7 h-7"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/yatharth-gupta-46796a290/" target="_blank" class="hover:text-white transition-transform duration-300 hover:-translate-y-1">
+                    <i data-lucide="linkedin" class="w-7 h-7"></i>
+                </a>
+                 <a href="mailto:yatharthbank7@gmail.com" class="hover:text-white transition-transform duration-300 hover:-translate-y-1">
+                    <i data-lucide="mail" class="w-7 h-7"></i>
+                </a>
+                <a href="tel:+919983378059" class="hover:text-white transition-transform duration-300 hover:-translate-y-1">
+                    <i data-lucide="phone" class="w-7 h-7"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24">
+            <h2 class="section-heading">About Me</h2>
+            <div class=" text-slate-400 space-y-4 max-w-4xl">
+                <div id="original-bio">
+                    <p>
+                        Hello! I'm Yatharth, a student at the Indian Institute of Technology (IIT) Patna, pursuing a B.Tech in Electrical and Electronics Engineering. My fascination with data and its potential to solve real-world problems has driven me to specialize in Machine Learning and LLM Optimization.
+                    </p>
+                    <p>
+                        Through projects and hackathons, I've had the opportunity to work on exciting challenges, from developing a secure fraud detection system for Walmart to analyzing large-scale energy consumption data. These experiences have not only honed my technical skills but also taught me the importance of creating robust and scalable solutions.
+                    </p>
+                    <p>
+                        I'm proficient in languages like Python and C++ and have hands-on experience with frameworks like PyTorch, Scikit-Learn, and LangChain. I'm always eager to learn new technologies and apply my knowledge to impactful projects.
+                    </p>
+                </div>
+                <!-- Gemini Feature: AI Bio Generator -->
+                <div class="mt-6 p-4 rounded-lg border border-slate-700 bg-slate-800/50">
+                    <h4 class="font-semibold text-slate-200 mb-3">✨ AI Bio Generator</h4>
+                    <p class="text-sm text-slate-400 mb-4">Want a different perspective? Let AI rewrite my bio in various tones.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                         <button onclick="generateBio('Formal')" class="text-sm py-1 px-3 bg-slate-700 hover:bg-slate-600 rounded-full transition-colors">Formal</button>
+                         <button onclick="generateBio('Casual')" class="text-sm py-1 px-3 bg-slate-700 hover:bg-slate-600 rounded-full transition-colors">Casual</button>
+                         <button onclick="generateBio('Technical')" class="text-sm py-1 px-3 bg-slate-700 hover:bg-slate-600 rounded-full transition-colors">Technical</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24">
+            <h2 class="section-heading">My Projects</h2>
+            <div class="space-y-12">
+                <!-- Project 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div class="md:col-span-6">
+                        <p class="accent-color text-sm">Featured Project</p>
+                        <h3 class="text-xl font-bold text-slate-200 mt-1 mb-4">Walmart Secure Fraud Detection System</h3>
+                        <div class="p-6 rounded-md shadow-lg glass-effect">
+                            <p class="text-slate-400" id="project1-desc">
+                                A robust ML-based fraud detection system using behavioral biometrics, achieving over 95% accuracy. It features a blockchain-backed SHA-256 logging system for secure, auditable transaction records.
+                            </p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+                            <span class="tag">Python</span><span class="tag">Scikit-Learn</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">JWT</span><span class="tag">Blockchain</span>
+                        </div>
+                        <div class="mt-4">
+                            <button onclick="explainProject('Walmart Secure Fraud Detection System', document.getElementById('project1-desc').innerText)" class="text-sm py-2 px-4 accent-color border border-accent-color rounded hover:bg-accent-color/10 transition-colors">✨ Ask AI Explainer</button>
+                        </div>
+                    </div>
+                    <div class="md:col-span-6 h-64 md:h-80 bg-slate-800 rounded-lg flex items-center justify-center relative group overflow-hidden">
+                        <i data-lucide="shield-check" class="w-24 h-24 text-slate-600"></i>
+                         <div class="absolute inset-0 bg-blue-900 bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="https://github.com/yatharth7115" target="_blank" class="p-3 border rounded-full hover:bg-slate-800 transition-colors"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                     <div class="md:col-span-6 h-64 md:h-80 bg-slate-800 rounded-lg flex items-center justify-center relative group overflow-hidden md:order-last">
+                        <i data-lucide="bar-chart-3" class="w-24 h-24 text-slate-600"></i>
+                         <div class="absolute inset-0 bg-blue-900 bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="https://github.com/yatharth7115" target="_blank" class="p-3 border rounded-full hover:bg-slate-800 transition-colors"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-6 text-right md:order-first">
+                        <p class="accent-color text-sm">Featured Project</p>
+                        <h3 class="text-xl font-bold text-slate-200 mt-1 mb-4">Household Energy Consumption Analysis</h3>
+                        <div class="p-6 rounded-md shadow-lg glass-effect">
+                            <p class="text-slate-400" id="project2-desc">
+                                Analyzed over 2 million smart meter data points to identify consumption patterns using clustering algorithms like K-Means and DBSCAN, evaluating model effectiveness for better customer segmentation.
+                            </p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 justify-end">
+                            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span><span class="tag">Matplotlib</span>
+                        </div>
+                         <div class="mt-4">
+                            <button onclick="explainProject('Household Energy Consumption Analysis', document.getElementById('project2-desc').innerText)" class="text-sm py-2 px-4 accent-color border border-accent-color rounded hover:bg-accent-color/10 transition-colors">✨ Ask AI Explainer</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div class="md:col-span-6">
+                        <p class="accent-color text-sm">Featured Project</p>
+                        <h3 class="text-xl font-bold text-slate-200 mt-1 mb-4">PersonaBot</h3>
+                        <div class="p-6 rounded-md shadow-lg glass-effect">
+                            <p class="text-slate-400" id="project3-desc">
+                                An intelligent chatbot with refined persona adaptability. Optimized local inference with PowerInfer and llama.cpp, cutting response times by 35% and boosting engagement through higher accuracy.
+                            </p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+                            <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">LangChain</span><span class="tag">OpenAI API</span><span class="tag">llama.cpp</span>
+                        </div>
+                         <div class="mt-4">
+                            <button onclick="explainProject('PersonaBot', document.getElementById('project3-desc').innerText)" class="text-sm py-2 px-4 accent-color border border-accent-color rounded hover:bg-accent-color/10 transition-colors">✨ Ask AI Explainer</button>
+                        </div>
+                    </div>
+                    <div class="md:col-span-6 h-64 md:h-80 bg-slate-800 rounded-lg flex items-center justify-center relative group overflow-hidden">
+                        <i data-lucide="bot" class="w-24 h-24 text-slate-600"></i>
+                        <div class="absolute inset-0 bg-blue-900 bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                           <a href="https://github.com/yatharth7115" target="_blank" class="p-3 border rounded-full hover:bg-slate-800 transition-colors"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills & Accomplishments Section -->
+        <section id="skills" class="py-24">
+             <h2 class="section-heading">Skills & Accomplishments</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                 <div>
+                     <h3 class="text-2xl font-semibold text-slate-200 mb-6">Technical Skills</h3>
+                     <div class="space-y-6" id="skills-list">
+                         <div>
+                             <h4 class="font-semibold text-slate-300 mb-2">Programming Languages</h4>
+                             <p class="text-slate-400" id="skills-lang">Python, SQL, C++, JavaScript, HTML, CSS</p>
+                         </div>
+                         <div>
+                             <h4 class="font-semibold text-slate-300 mb-2">Frameworks & Libraries</h4>
+                             <p class="text-slate-400" id="skills-frameworks">NumPy, Pandas, Scikit-Learn, PyTorch, LangChain, OpenAI API</p>
+                         </div>
+                         <div>
+                             <h4 class="font-semibold text-slate-300 mb-2">Platforms, Tools & Domains</h4>
+                             <p class="text-slate-400" id="skills-tools">MySQL, PowerInfer; Deep Learning, LLM Optimization, Prompt Engineering</p>
+                         </div>
+                     </div>
+                     <div class="mt-8">
+                        <button onclick="generateInterviewQuestions()" class="text-sm py-2 px-4 accent-color border border-accent-color rounded hover:bg-accent-color/10 transition-colors w-full md:w-auto">✨ Generate Interview Questions</button>
+                     </div>
+                 </div>
+                 <div>
+                     <h3 class="text-2xl font-semibold text-slate-200 mb-6">Accomplishments</h3>
+                     <ul class="space-y-3 text-slate-400 list-none">
+                         <li class="flex items-start justify-between">
+                            <div class="flex">
+                                <span class="accent-color mr-3 mt-1">&#9656;</span>
+                                <span id="acc-1">Achieved Top 0.01% rank in JEE Advanced, one of India's most competitive engineering entrance exams.</span>
+                            </div>
+                            <button onclick="explainAccomplishment('acc-1')" class="ml-2 text-accent-color opacity-50 hover:opacity-100 transition-opacity">✨</button>
+                         </li>
+                         <li class="flex items-start justify-between">
+                             <div class="flex">
+                                <span class="accent-color mr-3 mt-1">&#9656;</span>
+                                <span id="acc-2">Secured Rank 54 among 1,000+ teams in the RedBus Data Decode Hackathon 2025.</span>
+                             </div>
+                             <button onclick="explainAccomplishment('acc-2')" class="ml-2 text-accent-color opacity-50 hover:opacity-100 transition-opacity">✨</button>
+                         </li>
+                         <li class="flex items-start justify-between">
+                            <div class="flex">
+                                <span class="accent-color mr-3 mt-1">&#9656;</span>
+                                <span id="acc-3">Qualified for Round 2 of Adobe India Hackathon among 100,000+ registrants.</span>
+                            </div>
+                            <button onclick="explainAccomplishment('acc-3')" class="ml-2 text-accent-color opacity-50 hover:opacity-100 transition-opacity">✨</button>
+                         </li>
+                         <li class="flex items-start justify-between">
+                            <div class="flex">
+                                <span class="accent-color mr-3 mt-1">&#9656;</span>
+                                <span id="acc-4">Max ratings: 1658 on LeetCode & 1166 on Codeforces (400+ problems solved).</span>
+                            </div>
+                            <button onclick="explainAccomplishment('acc-4')" class="ml-2 text-accent-color opacity-50 hover:opacity-100 transition-opacity">✨</button>
+                         </li>
+                          <li class="flex items-start justify-between">
+                            <div class="flex">
+                                <span class="accent-color mr-3 mt-1">&#9656;</span>
+                                <span id="acc-5">Recognized as a State-level Abacus Champion in Rajasthan.</span>
+                            </div>
+                            <button onclick="explainAccomplishment('acc-5')" class="ml-2 text-accent-color opacity-50 hover:opacity-100 transition-opacity">✨</button>
+                         </li>
+                     </ul>
+                 </div>
+             </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 text-center">
+             <h2 class="text-2xl font-semibold text-slate-300">Get In Touch</h2>
+             <p class="mt-4 max-w-xl mx-auto text-slate-400">
+                I'm currently seeking opportunities for internships and collaborative projects. Whether you have a question or just want to say hi, my inbox is always open. I'll do my best to get back to you!
+             </p>
+             <div class="mt-8 flex items-center justify-center gap-4">
+                 <a href="mailto:yatharthbank7@gmail.com" class="inline-block py-3 px-8 border border-accent-color text-accent-color rounded-md hover:bg-accent-color hover:bg-opacity-10 transition-colors">
+                     Say Hello
+                 </a>
+                 <a href="https://drive.google.com/file/d/1gTux5XiJfzSZIjY6oLfh04VLtw3u5knU/view?usp=sharing" target="_blank" class="inline-block py-3 px-8 border border-accent-color text-accent-color rounded-md hover:bg-accent-color hover:bg-opacity-10 transition-colors">
+                    Download Resume
+                 </a>
+             </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="py-6 text-center text-slate-500 text-sm">
+        <p>Designed & Built by Yatharth Gupta</p>
+        <div class="mt-4 flex justify-center items-center space-x-4">
+                <a href="https://github.com/yatharth7115" target="_blank" class="hover:text-accent-color transition-colors">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/yatharth-gupta-46796a290/" target="_blank" class="hover:text-accent-color transition-colors">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+        </div>
+    </footer>
+
+    <!-- AI Modal -->
+    <div id="ai-modal-backdrop" onclick="closeModal()"></div>
+    <div id="ai-modal" class="rounded-lg shadow-2xl glass-effect p-6 md:p-8">
+        <div class="flex justify-between items-center mb-4">
+            <h3 id="modal-title" class="text-xl font-bold text-slate-200">✨ AI Generated Content</h3>
+            <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors">&times;</button>
+        </div>
+        <div id="modal-content" class="text-slate-300 max-h-[60vh] overflow-y-auto">
+             <div class="flex justify-center items-center h-32">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                // Downscroll
+                navbar.style.top = '-100px';
+            } else {
+                // Upscroll
+                navbar.style.top = '0';
+            }
+            if (scrollTop > 50) {
+                 navbar.classList.add('shadow-lg');
+            } else {
+                 navbar.classList.remove('shadow-lg');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }, false);
+
+        // --- Gemini API Integration ---
+
+        const modalBackdrop = document.getElementById('ai-modal-backdrop');
+        const modal = document.getElementById('ai-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const originalBioHtml = document.getElementById('original-bio').innerHTML;
+
+        // Use the Vercel proxy to securely call the Gemini API
+        const API_URL = '/api/proxy';
+        
+        function showLoader() {
+            modalContent.innerHTML = `<div class="flex justify-center items-center h-32"><div class="loader"></div></div>`;
+        }
+        
+        function openModal() {
+            modalBackdrop.style.display = 'block';
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            modalBackdrop.style.display = 'none';
+            modal.style.display = 'none';
+        }
+
+        async function callGemini(prompt, systemInstruction, maxRetries = 3) {
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                 systemInstruction: {
+                    parts: [{ text: systemInstruction }]
+                },
+            };
+            
+            let attempt = 0;
+            while (attempt < maxRetries) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        return candidate.content.parts[0].text;
+                    } else {
+                        throw new Error("Invalid response structure from API.");
+                    }
+                } catch (error) {
+                    console.error(`Attempt ${attempt + 1} failed:`, error);
+                    attempt++;
+                    if (attempt < maxRetries) {
+                        const delay = Math.pow(2, attempt) * 1000;
+                        await new Promise(res => setTimeout(res, delay));
+                    } else {
+                        return "Sorry, I couldn't generate a response at this time. Please try again later.";
+                    }
+                }
+            }
+        }
+        
+        function formatResponse(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+                .replace(/\* (.*?)(?=\n\*|\n\n|$)/g, '<li class="list-disc list-inside mb-2">$1</li>') // List items
+                .replace(/\n/g, '<br>');
+        }
+
+        async function generateBio(tone) {
+            modalTitle.innerText = `✨ AI Generated Bio (${tone})`;
+            openModal();
+            showLoader();
+
+            const bioText = document.getElementById('original-bio').innerText;
+            const systemPrompt = "You are an expert career storyteller and professional biographer. Your task is to rewrite a professional bio for a talented engineering student based on the provided information. Adapt the tone according to the user's request. Format the output as simple paragraphs.";
+            const userPrompt = `Rewrite this bio in a strictly ${tone} tone. Bio: "${bioText}"`;
+            
+            const aiResponse = await callGemini(userPrompt, systemPrompt);
+            modalContent.innerHTML = formatResponse(aiResponse);
+        }
+
+        async function explainProject(title, description) {
+            modalTitle.innerText = `✨ AI Explanation: ${title}`;
+            openModal();
+            showLoader();
+
+            const systemPrompt = "You are a senior software engineer and technical project manager. Your task is to provide a detailed, easy-to-understand explanation of a software project based on its title and a brief description. Focus on the potential technical challenges, the solutions used, and the real-world impact of the project. Use markdown for formatting like bolding key terms and using bullet points for clarity.";
+            const userPrompt = `Provide a detailed explanation of the project titled "${title}". Here's a description: "${description}".`;
+            
+            const aiResponse = await callGemini(userPrompt, systemPrompt);
+            modalContent.innerHTML = formatResponse(aiResponse);
+        }
+
+        async function explainAccomplishment(elementId) {
+            const accomplishmentText = document.getElementById(elementId).innerText;
+            modalTitle.innerText = `✨ AI Explainer`;
+            openModal();
+            showLoader();
+
+            const systemPrompt = "You are a knowledgeable career coach and expert communicator. Your task is to explain the significance of a student's accomplishment to a global audience, particularly recruiters who may not be familiar with the specific context (e.g., Indian exams, specific hackathons). Explain why this achievement is impressive in a concise, professional, and easy-to-understand paragraph.";
+            const userPrompt = `Please explain the significance of the following accomplishment: "${accomplishmentText}"`;
+            
+            const aiResponse = await callGemini(userPrompt, systemPrompt);
+            modalContent.innerHTML = formatResponse(aiResponse);
+        }
+
+        async function generateInterviewQuestions() {
+            modalTitle.innerText = `✨ AI Generated Interview Questions`;
+            openModal();
+            showLoader();
+
+            const skillsLang = document.getElementById('skills-lang').innerText;
+            const skillsFrameworks = document.getElementById('skills-frameworks').innerText;
+            const skillsTools = document.getElementById('skills-tools').innerText;
+            const allSkills = `Languages: ${skillsLang}. Frameworks & Libraries: ${skillsFrameworks}. Tools & Domains: ${skillsTools}.`;
+
+            const systemPrompt = "You are a senior technical interviewer at a top tech company (like Google or Amazon). Your task is to generate three insightful technical interview questions based on the provided list of skills. The questions should be challenging but fair, covering different aspects of the skills listed. Structure your response with one conceptual question, one practical coding problem, and one system design/architecture question. Use markdown for formatting.";
+            const userPrompt = `Generate three interview questions for a candidate with the following skills: ${allSkills}`;
+
+            const aiResponse = await callGemini(userPrompt, systemPrompt);
+            modalContent.innerHTML = formatResponse(aiResponse);
+        }
+
+
+    </script>
+</body>
+</html>
+
